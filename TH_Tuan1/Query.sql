@@ -14,7 +14,7 @@ FROM S_EMP
 WHERE id = 23;
 
 /* Câu 3: Hiển thị họ, tên và mã phòng của nhân viên trong phòng 10, 50 và sắp theo thứ tự của tên. Nối 2 cột họ tên và đặt tên cột mới là Employees. */
-SELECT last_name || ' ' || first_name AS "Họ và tên", dept_id AS "Mã phòng"
+SELECT last_name || ' ' || first_name AS "Employees", dept_id AS "Mã phòng"
 FROM S_EMP
 WHERE dept_id IN (10, 50)
 ORDER BY first_name;
@@ -63,7 +63,7 @@ FROM S_EMP;
 /* Câu 11: Hiển thị tên sản phẩm của tất cả các sản phẩm có chữ “ski”.  */
 SELECT name AS "Tên sản phẩm"
 FROM S_PRODUCT
-WHERE name LIKE 'ski%';
+WHERE name LIKE '%ski%';
 
 /*  Câu 12: Với mỗi nhân viên, hãy tính số tháng thâm niên của nhân viên. Sắp xếp 
 kết quả tăng dần theo tháng thâm niên và số tháng được làm tròn. */
@@ -119,6 +119,7 @@ WHERE id NOT IN (
 SELECT name AS "Tên sản phẩm"
 FROM s_product
 WHERE name LIKE 'Pro%'
+ORDER BY name;
 
 /* Câu 20: Hiển thị tên sản phẩm và mô tả ngắn gọn (SHORT_DESC) của sản phẩm 
 với những sản phẩm có mô tả ngắn gọn chứa từ “bicycle”. */
@@ -133,7 +134,7 @@ from s_product;
 /* Câu 22: Hiển thị tên nhân viên và chức vụ trong ngoặc đơn “( )” của tất cả các 
 nhân viên. Ví dụ: Nguyễn Văn Tâm (Giám đốc). */
 SELECT first_name || ' ' || last_name || ' (' || TITLE || ')' AS "Tên nhân viên và chức vụ"
-from S_EMP
+from S_EMP;
 
 /* câu 23: Với từng người quản lý, cho biết mã người quản lý và số nhân viên mà 
 họ quản lý. */
