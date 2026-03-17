@@ -1,3 +1,18 @@
+/* Nhóm sinh viên thực hiện:
+Huỳnh Đức Dũng 24520336 Trưởng nhóm
+Lai Mộc Huy 24520663
+Nguyễn Thành Đức 24520322
+Sơn Nguyễn Kỳ Duyên 24520409
+
+Nhiệm vụ phân công từng thành viên làm bài tập thực hành tuần 1
+Huỳnh Đức Dũng: Bài 2 và Bài 3 câu 18, 19, 20, 21
+Lai Mộc Huy: Làm Bài 2 và Bài 3 câu 22, 23, 24, 25
+Nguyễn Thành Đức: Bài 2 và Bài 3 câu 26, 27, 28, 29
+Sơn Nguyễn Kỳ Duyên: Bài 2 và Bài 3 câu 30, 31, 32
+*/
+
+
+
 -- Bài 2
 
 /* Câu 1: Tsạo câu truy vấn thể hiện tên, mã khách hàng. Tên các cột là Tên khách
@@ -106,6 +121,7 @@ from s_ord o
 join s_item i on o.id = i.ord_id
 where o.total > 100000; 
 
+/* Bài 3 */
 /* Câu 18: Hiển thị họ tên của tất cả các nhân viên không phải là người quản lý. */
 SELECT last_name || ' ' || first_name AS "Họ Tên"
 FROM s_emp

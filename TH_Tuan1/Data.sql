@@ -1,3 +1,15 @@
+/* Nhóm sinh viên thực hiện:
+Huỳnh Đức Dũng 24520336 Trưởng nhóm
+Lai Mộc Huy 24520663
+Nguyễn Thành Đức 24520322
+Sơn Nguyễn Kỳ Duyên 24520409
+
+Nhiệm vụ phân công từng thành viên làm bài tập thực hành tuần 1
+Huỳnh Đức Dũng: Bài 2 và Bài 3 câu 18, 19, 20, 21
+Lai Mộc Huy: Làm Bài 2 và Bài 3 câu 22, 23, 24, 25
+Nguyễn Thành Đức: Bài 2 và Bài 3 câu 26, 27, 28, 29
+Sơn Nguyễn Kỳ Duyên: Bài 2 và Bài 3 câu 30, 31, 32
+*/
 -- Bài 1
 CREATE SEQUENCE s_customer_id
    MINVALUE 1
