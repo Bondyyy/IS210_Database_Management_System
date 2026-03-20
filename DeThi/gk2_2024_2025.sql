@@ -162,4 +162,3 @@ end;
 SELECT SumQuantity(12, 2024, 'BC04') FROM DUAL;
 
 
-
