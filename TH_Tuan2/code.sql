@@ -1,44 +1,49 @@
 --Bài 2:
 
-/* Câu 1: Tsạo câu truy vấn thể hiện tên, mã khách hàng. Tên các cột là Tên khách
-hàng, Mã khách hàng. Sắp xếp kết quả theo thứ tự giảm dần của mã khách
-hàng. */
+/* Câu 1: Tạo câu truy vấn thể hiện tên, mã khách hàng. Tên các cột là Tên khách hàng, Mã khách hàng.
+   Sắp xếp kết quả theo thứ tự giảm dần của mã khách hàng. */
 
-SELECT name AS "Tên khách hàng", id AS "Mã khách hàng"
-FROM S_CUSTOMER
+SELECT name AS "Tên khách hàng",
+       id AS "Mã khách hàng"
+FROM s_customer
 ORDER BY id DESC;
 
 /* Câu 2: Hiển thị tên truy cập của nhân viên 23. */
 SELECT userid
-FROM S_EMP
+FROM s_emp
 WHERE id = 23;
 
-/* Câu 3: Hiển thị họ, tên và mã phòng của nhân viên trong phòng 10, 50 và sắp theo thứ tự của tên. Nối 2 cột họ tên và đặt tên cột mới là Employees. */
-SELECT last_name || ' ' || first_name AS "Employees", dept_id AS "Mã phòng"
-FROM S_EMP
+/* Câu 3: Hiển thị họ, tên và mã phòng của nhân viên trong phòng 10, 50 và
+   sắp theo thứ tự của tên. Nối 2 cột họ tên và đặt tên cột mới là Employees. */
+SELECT first_name || ' ' || last_name AS "Employees",
+       dept_id
+FROM s_emp
 WHERE dept_id IN (10, 50)
 ORDER BY first_name;
 
 /* Câu 4: Hiển thị tất cả những nhân viên có tên chứa chữ “S”.  */
-SELECT first_name AS "Tên nhân viên"
-FROM S_EMP
-WHERE first_name LIKE '%S%';
+SELECT * FROM s_emp
+WHERE UPPER(first_name) LIKE '%S%';
 
-/* Câu 5: Hiển thị tên truy nhập và ngày bắt đầu làm việc của nhân viên trong khoảng thời gian từ 14/5/1990 đến 26/5/1991. */
-SELECT userid AS "Tên truy cập", start_date AS "Ngày bắt đầu làm việc"
-FROM S_EMP
-WHERE start_date BETWEEN TO_DATE('14/5/1990', 'DD/MM/YYYY') AND TO_DATE('26/5/1991', 'DD/MM/YYYY');
+/* Câu 5: Hiển thị tên truy nhập và ngày bắt đầu làm việc của nhân viên
+   trong khoảng thời gian từ 14/5/1990 đến 26/5/1991*/
+SELECT userid, start_date
+FROM s_emp
+WHERE start_date BETWEEN TO_DATE('14/05/1990', 'DD/MM/YYYY')
+                     AND TO_DATE('26/05/1991', 'DD/MM/YYYY');
 
-/* Câu 6: Viết câu truy vấn hiển thị tên và mức lương của tất cả các nhân viên nhận lương từ 1000 đến 2000/tháng. */
-SELECT first_name AS "Tên nhân viên", salary AS "Mức lương"
-FROM S_EMP
+/* Câu 6: Viết câu truy vấn hiển thị tên và mức lương của tất cả các nhân viên
+   nhận lương từ 1000 đến 2000/tháng.*/
+SELECT first_name, salary
+FROM s_emp
 WHERE salary BETWEEN 1000 AND 2000;
 
-/* Câu 7:  Lập danh sách tên và mức lương của những nhân viên ở phòng 31, 42, 50
+/* Câu 7:   Lập danh sách tên và mức lương của những nhân viên ở phòng 31, 42, 50
 nhận mức lương trên 1350. Đặt tên cho cột tên là Emloyee Name và đặt tên
 cho cột lương là Monthly Salary. */
-SELECT first_name AS "Employee Name", salary AS "Monthly Salary"
-FROM S_EMP
+SELECT first_name AS "Employee Name",
+       salary AS "Monthly Salary"
+FROM s_emp
 WHERE dept_id IN (31, 42, 50) AND salary > 1350;
 
 /* Câu 8: Hiển thị tên và ngày bắt đầu làm việc của mỗi nhân viên được thuê trong
@@ -52,13 +57,12 @@ SELECT id AS "Mã nhân viên", first_name AS "Tên nhân viên", salary * 1.15 
 FROM S_EMP;
 
 /* Câu 10:  Hiển thị tên của mỗi nhân viên, ngày tuyển dụng và ngày xem xét tăng
-lương. Ngày xét tăng lương theo qui định là vào ngày thứ hai sau 6 tháng làm
-việc. Định dạng ngày xem xét theo kiểu “Eighth of May 1992”. */
-SELECT first_name AS "Tên nhân viên",
-        start_date AS "Ngày tuyển dụng",
-        TO_CHAR(NEXT_DAY(ADD_MONTHS(start_date, 6), 'MONDAY'), 'fmDdspth "of" Month YYYY') AS "Ngày xem xét tăng lương",
-        NEXT_DAY(ADD_MONTHS(start_date, 6), 'MONDAY') AS "Ngày xem xét tăng lương (định dạng chuẩn)"
-FROM S_EMP;
+lương. Ngày xét tăng lương theo qui định là vào ngày thứ hai sau 6 tháng
+làm việc. Định dạng ngày xem xét theo kiểu “Eighth of May 1992”.  */
+SELECT first_name,
+       start_date,
+       TO_CHAR(NEXT_DAY(ADD_MONTHS(start_date, 6), 'MONDAY'), 'fmDdspth "of" Month YYYY') AS "Review Date"
+FROM s_emp;
 
 /* Câu 11: Hiển thị tên sản phẩm của tất cả các sản phẩm có chữ “ski”.  */
 SELECT name AS "Tên sản phẩm"
@@ -67,10 +71,10 @@ WHERE name LIKE '%ski%';
 
 /*  Câu 12: Với mỗi nhân viên, hãy tính số tháng thâm niên của nhân viên. Sắp xếp
 kết quả tăng dần theo tháng thâm niên và số tháng được làm tròn. */
-SELECT first_name AS "Tên nhân viên",
-        TRUNC(MONTHS_BETWEEN(SYSDATE, start_date)) AS "Số tháng thâm niên"
-FROM S_EMP
-ORDER BY "Số tháng thâm niên" ASC;
+SELECT first_name,
+       ROUND(MONTHS_BETWEEN(SYSDATE, start_date)) AS "Tham_Nien_Thang"
+FROM s_emp
+ORDER BY "Tham_Nien_Thang" ASC;
 
 /* Câu 13: Cho biết có bao nhiêu người quản lý. */
 SELECT COUNT(DISTINCT manager_id) AS "Số người quản lý"
@@ -124,9 +128,9 @@ ORDER BY name;
 
 /* Câu 20: Hiển thị tên sản phẩm và mô tả ngắn gọn (SHORT_DESC) của sản phẩm
 với những sản phẩm có mô tả ngắn gọn chứa từ “bicycle”. */
-select name AS "Tên sản phẩm", short_desc AS "Mô tả ngắn gọn"
-from s_product
-where short_desc LIKE '%bicycle%';
+SELECT name, short_desc
+FROM s_product
+WHERE LOWER(short_desc) LIKE '%bicycle%';
 
 /* Câu 21: Hiển thị tất cả những SHORT_DESC.  */
 Select DISTINCT short_desc AS "Mô tả ngắn gọn"
@@ -134,8 +138,8 @@ from s_product;
 
 /* Câu 22: Hiển thị tên nhân viên và chức vụ trong ngoặc đơn “( )” của tất cả các
 nhân viên. Ví dụ: Nguyễn Văn Tâm (Giám đốc). */
-SELECT first_name || ' ' || last_name || ' (' || TITLE || ')' AS "Tên nhân viên và chức vụ"
-from S_EMP;
+SELECT first_name || ' ' || last_name || ' (' || title || ')' AS "Thong_Tin_Nhan_Vien"
+FROM s_emp;
 
 /* câu 23: Với từng người quản lý, cho biết mã người quản lý và số nhân viên mà
 họ quản lý. */
@@ -195,7 +199,10 @@ group by c.id, c.name
 order by SUM(o.total) DESC
 fetch first 1 row with ties;
 
-/* Câu 29: Hiển thị họ, tên và ngày tuyển dụng của tất cả các nhân viên cùng phòng
+/* Câu 29: Hãy sử dụng các bảng S_EMP, S_DEPT, S_ORD, S_ITEM và
+S_PRODUCT */
+
+/* Câu 30: Hiển thị họ, tên và ngày tuyển dụng của tất cả các nhân viên cùng phòng
 với Lan.  */
 SELECT first_name AS "Tên nhân viên", last_name AS "Họ nhân viên", start_date AS "Ngày tuyển dụng"
 FROM s_emp
@@ -205,19 +212,19 @@ WHERE dept_id = (
     WHERE first_name = 'Midori'
 );
 
-/* Câu 30: Hiển thị mã nhân viên, họ, tên và mã truy cập của tất cả các nhân viên có
+/* Câu 31: Hiển thị mã nhân viên, họ, tên và mã truy cập của tất cả các nhân viên có
 mức lương trên mức lương trung bình. */
 SELECT id AS "Mã nhân viên", first_name AS "Tên nhân viên", last_name AS "Họ nhân viên", userid AS "Mã truy cập"
 FROM s_emp
 WHERE salary > (SELECT AVG(salary) FROM s_emp);
 
-/* Câu 31: Hiển thị mã nhân viên, họ và tên của tất cả các nhân viên có mức lương
+/* Câu 32: Hiển thị mã nhân viên, họ và tên của tất cả các nhân viên có mức lương
 trên mức trung bình và có tên chứa ký tự “L”. */
 SELECT id AS "Mã nhân viên", first_name AS "Tên nhân viên", last_name
 FROM s_emp
 WHERE salary > (SELECT AVG(salary) FROM s_emp) AND first_name LIKE '%L%';
 
-/* Câu 32: Hiển thị những khách hàng chưa bao giờ đặt hàng.*/
+/* Câu 33: Hiển thị những khách hàng chưa bao giờ đặt hàng.*/
 SELECT name AS "Tên khách hàng"
 FROM s_customer
 WHERE id NOT IN (SELECT customer_id FROM s_ord);
