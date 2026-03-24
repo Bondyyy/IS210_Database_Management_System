@@ -245,13 +245,14 @@ S_PRODUCT */
 
 /* Câu 30: Hiển thị họ, tên và ngày tuyển dụng của tất cả các nhân viên cùng phòng
 với Lan.  */
-SELECT first_name AS "Tên nhân viên", last_name AS "Họ nhân viên", start_date AS "Ngày tuyển dụng"
-FROM s_emp
-WHERE dept_id = (
-    SELECT dept_id
-    FROM s_emp
-    WHERE first_name = 'Midori'
-);
+SELECT LAST_NAME || ' ' || FIRST_NAME AS "HỌ TÊN NHÂN VIÊN", START_DATE AS "NGÀY TUYỂN DỤNG"
+FROM S_EMP
+WHERE DEPT_ID IN (
+  SELECT DEPT_ID
+  FROM S_EMP
+  WHERE UPPER(FIRST_NAME) = 'LAN'
+)
+AND UPPER(FIRST_NAME) <> 'LAN';
 
 /* Câu 31: Hiển thị mã nhân viên, họ, tên và mã truy cập của tất cả các nhân viên có
 mức lương trên mức lương trung bình. */
